@@ -17,12 +17,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(ingest_router)
 app.include_router(ingest_router, prefix="/api")
 
-app.include_router(chat_router)
 app.include_router(chat_router, prefix="/api")
 
 @app.get("/health")
 def health():
-    return {"messgage": "healthy route"}
+    return {"messgage": "healthy"}

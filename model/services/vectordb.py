@@ -56,9 +56,9 @@ def search_similar_chunks(ques_embeeding):
         query = text("""
             SELECT * FROM document_chunks
             ORDER BY embedding <=> CAST(:ques_embeeding AS vector)
-            LIMIT :5
+            LIMIT 5
         """)
 
-        res = conn.execute(query, {...}).fetchall()
+        res = conn.execute(query, {"ques_embeeding": ques_embeeding.tolist()}).fetchall()
         
     return res
